@@ -7,5 +7,5 @@ import com.itelg.devops.gjb.domain.Project;
 
 public interface JobTemplateService
 {
-	public List<JobTemplate> getMatchingJobTemplates(Project project);
+	List<JobTemplate> getMatchingJobTemplates(Project project);
 }

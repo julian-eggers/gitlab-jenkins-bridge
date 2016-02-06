@@ -6,9 +6,9 @@ import com.itelg.devops.gjb.domain.Job;
 
 public interface JobService
 {
-	public void insertJob(Job job);
-	public void updateJob(Job job);
-	public void deleteJob(Job job);
+	void insertJob(Job job);
+	void updateJob(Job job);
+	void deleteJob(Job job);
 
-	public List<Job> getAllJobs();
+	List<Job> getAllJobs();
 }

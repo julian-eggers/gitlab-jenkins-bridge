@@ -29,21 +29,17 @@ public class DefaultProjectMemberService implements ProjectMemberService
 	@Override
 	public boolean addJenkinsProjectMemberIfNotExists(Project project)
 	{
-		for (ProjectMember projectMember : getProjectMembers(project))
-		{
-			if (projectMember.getId() == gitlabJenkinsUserId)
-			{
-				log.debug("ProjectMember already exists (" + projectMember + ")");
-				return false;
-			}
-		}
-		
 		ProjectMember projectMember = new ProjectMember();
 		projectMember.setId(gitlabJenkinsUserId);
 		projectMember.setProjectId(project.getId());
-		insertProjectMember(projectMember);
 		
-		return true;
+		if (getProjectMembers(project).contains(projectMember) == false)
+		{
+			insertProjectMember(projectMember);
+			return true;
+		}
+		
+		return false;
 	}
 	
 	@Override

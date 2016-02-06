@@ -7,7 +7,7 @@ import com.itelg.devops.gjb.domain.ProjectMember;
 
 public interface ProjectMemberRepository
 {
-	public void insertProjectMember(ProjectMember projectMember);
+	void insertProjectMember(ProjectMember projectMember);
 	
-	public List<ProjectMember> getProjectMembers(Project project);
+	List<ProjectMember> getProjectMembers(Project project);
 }

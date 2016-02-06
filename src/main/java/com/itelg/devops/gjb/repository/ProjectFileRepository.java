@@ -4,5 +4,5 @@ import com.itelg.devops.gjb.domain.Project;
 
 public interface ProjectFileRepository
 {
-	public byte[] getProjectFileContent(Project project, String filePath);
+	byte[] getProjectFileContent(Project project, String filePath);
 }

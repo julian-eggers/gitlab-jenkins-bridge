@@ -7,9 +7,9 @@ import com.itelg.devops.gjb.domain.ProjectMember;
 
 public interface ProjectMemberService
 {
-	public boolean addJenkinsProjectMemberIfNotExists(Project project);
+	boolean addJenkinsProjectMemberIfNotExists(Project project);
 	
-	public void insertProjectMember(ProjectMember projectMember);
+	void insertProjectMember(ProjectMember projectMember);
 	
-	public List<ProjectMember> getProjectMembers(Project project);
+	List<ProjectMember> getProjectMembers(Project project);
 }

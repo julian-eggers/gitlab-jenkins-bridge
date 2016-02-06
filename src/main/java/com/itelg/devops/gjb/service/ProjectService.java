@@ -6,5 +6,5 @@ import com.itelg.devops.gjb.domain.Project;
 
 public interface ProjectService
 {
-	public List<Project> getAllProjects();
+	List<Project> getAllProjects();
 }
