@@ -1,0 +1,36 @@
+<!DOCTYPE hudson>
+<hudson>
+  <assignedLabel />
+  <mode>NORMAL</mode>
+  <nodeDescription>the master Jenkins node</nodeDescription>
+  <nodeName />
+  <numExecutors>2</numExecutors>
+  <job>
+    <name>project1 (Gitlab)</name>
+    <url>
+      http://192.168.0.22:8080/job/project1%20(Gitlab)/
+    </url>
+    <color>notbuilt</color>
+  </job>
+  <job>
+    <name>project2 (Gitlab)</name>
+    <url>
+      http://192.168.0.22:8080/job/project2%20(Gitlab)/
+    </url>
+    <color>notbuilt</color>
+  </job>
+  <overallLoad />
+  <primaryView>
+    <name>All</name>
+    <url>http://192.168.0.22:8080/</url>
+  </primaryView>
+  <quietingDown>false</quietingDown>
+  <slaveAgentPort>0</slaveAgentPort>
+  <unlabeledLoad />
+  <useCrumbs>false</useCrumbs>
+  <useSecurity>false</useSecurity>
+  <view>
+    <name>All</name>
+    <url>http://192.168.0.22:8080/</url>
+  </view>
+</hudson>
