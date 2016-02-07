@@ -2,15 +2,142 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.itelg.devops</groupId>
   <artifactId>gitlab-jenkins-bridge</artifactId>
+  <name>gitlab-jenkins-bridge</name>
+  <description>Gitlab-Jenkins-Bridge</description>
+  <url>https://github.com/julian-eggers/gitlab-jenkins-bridge</url>
   <version>0.0.1-SNAPSHOT</version>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <java.version>1.8</java.version>
-    <jacoco.version>0.7.5.201505241946</jacoco.version>
-    <powermock.version>1.6.2</powermock.version>
-    <easymock.version>3.3.1</easymock.version>
+    <cobertura.version>2.7</cobertura.version>
+    <coveralls.version>4.1.0</coveralls.version>
+    <powermock.version>1.6.3</powermock.version>
+    <easymock.version>3.4</easymock.version>
   </properties>
+
+  <scm>
+    <url>https://github.com/julian-eggers/gitlab-jenkins-bridge</url>
+    <connection>scm:git:https://github.com/julian-eggers/gitlab-jenkins-bridge.git</connection>
+    <developerConnection>scm:git:https://github.com/julian-eggers/gitlab-jenkins-bridge.git</developerConnection>
+  </scm>
+
+  <developers>
+    <developer>
+      <name>Julian Eggers</name>
+      <email>eggers.julian@gmail.com</email>
+    </developer>
+  </developers>
+
+  <licenses>
+    <license>
+      <name>MIT License</name>
+      <url>http://www.opensource.org/licenses/mit-license.php</url>
+    </license>
+  </licenses>
+
+  <build>
+    <plugins>
+      <!-- BUILD AND FILES -->
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>${java.version}</source>
+          <target>${java.version}</target>
+          <outputEncoding>UTF-8</outputEncoding>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <goals>
+              <goal>jar-no-fork</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>attach-javadocs</id>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-gpg-plugin</artifactId>
+        <version>1.6</version>
+        <executions>
+          <execution>
+            <id>sign-artifacts</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>sign</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <!-- TEST AND COVERAGE -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>cobertura-maven-plugin</artifactId>
+        <version>${cobertura.version}</version>
+        <configuration>
+          <format>xml</format>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.eluder.coveralls</groupId>
+        <artifactId>coveralls-maven-plugin</artifactId>
+        <version>${coveralls.version}</version>
+      </plugin>
+      <!-- DEPLOYMENT -->
+      <plugin>
+        <artifactId>maven-release-plugin</artifactId>
+        <version>2.5.3</version>
+        <configuration>
+          <autoVersionSubmodules>true</autoVersionSubmodules>
+          <useReleaseProfile>false</useReleaseProfile>
+          <releaseProfiles>release</releaseProfiles>
+          <goals>deploy</goals>
+        </configuration>
+        <dependencies>
+          <dependency>
+            <groupId>org.apache.maven.scm</groupId>
+            <artifactId>maven-scm-provider-gitexe</artifactId>
+            <version>1.9.4</version>
+          </dependency>
+        </dependencies>
+      </plugin>
+      <plugin>
+        <groupId>de.jutzig</groupId>
+        <artifactId>github-release-plugin</artifactId>
+        <version>1.1.1</version>
+        <executions>
+          <execution>
+            <id>github-upload</id>
+            <phase>deploy</phase>
+            <goals>
+              <goal>release</goal>
+            </goals>
+            <configuration>
+              <releaseName>${project.version}</releaseName>
+              <tag>${project.version}</tag>
+              <artifact>${project.build.directory}/${project.artifactId}-${project.version}.jar</artifact>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
 
   <parent>
     <groupId>org.springframework.boot</groupId>
@@ -57,13 +184,6 @@
       <groupId>org.powermock</groupId>
       <artifactId>powermock-api-easymock</artifactId>
       <version>${powermock.version}</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.jacoco</groupId>
-      <artifactId>org.jacoco.agent</artifactId>
-      <classifier>runtime</classifier>
-      <version>${jacoco.version}</version>
       <scope>test</scope>
     </dependency>
 
