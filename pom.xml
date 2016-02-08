@@ -92,6 +92,12 @@
         <version>${cobertura.version}</version>
         <configuration>
           <format>xml</format>
+          <instrumentation>
+            <excludes>
+              <exclude>**/*Configuration.class</exclude>
+              <exclude>**/*Application.class</exclude>
+            </excludes>
+          </instrumentation>
         </configuration>
       </plugin>
       <plugin>
