@@ -23,7 +23,7 @@ public class HttpProjectMemberRepository extends AbstractGitlabHttpRepository im
 	{
 		try
 		{
-			gitlabAPI.addProjectMember(toInteger(projectMember.getProjectId()), toInteger(projectMember.getId()), GitlabAccessLevel.Reporter);
+			gitlabAPI.addProjectMember(toInteger(projectMember.getProjectId()), toInteger(projectMember.getId()), GitlabAccessLevel.Developer);
 		}
 		catch (Exception e)
 		{
